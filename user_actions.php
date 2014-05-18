@@ -6,7 +6,13 @@ require_once("./models/config.php");
 // TODO: Create interface for adding/removing permissions
 // TODO: Start migrating actions from funcs.php
 
-/** Contains actions that can be access-controlled through PermissionHandlers. */
+/** Glossary:
+*   Permit:  An authorization for a particular user or group to access a particular resource.
+*   Action:  A function that performs an action that requires some sort of authorization.
+*/
+
+
+/** Contains actions that can be access-controlled through PermitValidators. */
 class Actions {
     static function createSession($student_id, $user_id){
         
@@ -17,7 +23,7 @@ class Actions {
     
     /** Update email address for the specified user_id. */
     static function updateUserEmail($user_id, $new_email){
-        if (!checkActionPermissionSelf(__FUNCTION__, func_get_args()))
+        if (!checkActionPermitsSelf(__FUNCTION__, func_get_args()))
             return false;
         
     
@@ -25,8 +31,8 @@ class Actions {
     }  
 }
 
-/** Contains methods for validating user permissions.  Used in conjunction with Actions and checkPermission. */
-class PermissionHandlers {
+/** Contains methods for validating user permits.  Used in conjunction with Actions and checkActionPermits. */
+class PermitValidators {
 
     /** Unconditionally grant permission - use carefully! */
     static function always(){
@@ -56,7 +62,7 @@ class PermissionHandlers {
 }
 
 /** Called from within an action function, checks permissions for that action with the specified arguments */
-function checkActionPermissionSelf($action_function, $function_args){
+function checkActionPermitsSelf($action_function, $function_args){
     try{
         $actionReflector = new ReflectionClass('Actions');
         $method = $actionReflector->getMethod($action_function);
@@ -73,11 +79,11 @@ function checkActionPermissionSelf($action_function, $function_args){
         $i++;
     }
     
-    return checkPermission($action_function, $mapped_args);
+    return checkActionPermits($action_function, $mapped_args);
 }
     
-/** Load action permissions for the logged in user, and check the specified action with the specified arguments. */
-function checkPermission($action_function, $args) {
+/** Load action permits for the logged in user, and check the specified action with the specified arguments. */
+function checkActionPermits($action_function, $args) {
     global $db_table_prefix, $loggedInUser;
     try {
         $actionReflector = new ReflectionClass('Actions');
@@ -154,7 +160,7 @@ function checkPermission($action_function, $args) {
 function checkPermits($permits, $args){
     global $loggedInUser;
     
-    $permitReflector = new ReflectionClass('PermissionHandlers');
+    $permitReflector = new ReflectionClass('PermitValidators');
     if (count($permits) == 0)
         return false;
     foreach ($permits as $permit){
@@ -198,9 +204,9 @@ function checkPermits($permits, $args){
 
 // Just some tests, for now
 
-checkPermission('updateUserEmail', array("user_id" => 1));
-checkPermission('updateUserEmail', array("blah" => 1));
-checkPermission('updateUserDisplay', array("user_id" => 2));
+checkActionPermits('updateUserEmail', array("user_id" => 1));
+checkActionPermits('updateUserEmail', array("blah" => 1));
+checkActionPermits('updateUserDisplay', array("user_id" => 2));
 
 Actions::updateUserEmail(1, "yo");
 Actions::updateUserEmail(2, "yo");

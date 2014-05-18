@@ -686,7 +686,7 @@ TODO Tasks
 
 These are features to be added in future releases.
 
-1. Deploy CSRF tokens on all forms and add "bulletproof sessions" as per http://blog.teamtreehouse.com/how-to-create-bulletproof-sessions.
+1. Deploy CSRF tokens on all forms and add "bulletproof sessions" as per http://blog.teamtreehouse.com/how-to-create-bulletproof-sessions.  Implement storing sessions in database.
 2. Add **OAuth** support, for users to create accounts and log in via Facebook/Google.
 3. Associate permission groups with allowed actions, rather than individual pages.  Actions, in turn, are linked to pages (on the backend) and features (on the frontend).  Automatically hide features for which a user does not have permission.
 4. Convert to standard REST architecture, implementing updates as PUT and deletes as DELETE.  This could mean that different backend pages that act on the same type of object (users, pages, etc) could be combined into a single page that takes different actions depending on the request method.
@@ -698,6 +698,7 @@ These are features to be added in future releases.
 10. Admin-side user account creation should bypass activation process.
 11. Continue improving error-handling and rendering system.
 12. Finish documenting all functions and pages.
+13. Finish migrating all DB calls to PDO.
 
 Possible additional features as suggested on UserCake forums:
 

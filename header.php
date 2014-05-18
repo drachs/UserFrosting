@@ -70,15 +70,15 @@ if (!securePage($_SERVER['PHP_SELF'])){
   <ul class="nav navbar-nav side-nav">
 	  
   <?php
-  //Links for permission level 2 (default admin)
-  if ($loggedInUser->checkPermission(array(2))){
-	  echo "
-	  <li class='navitem-dashboard-admin'><a href='dashboard_admin.php'><i class='fa fa-dashboard'></i> Admin Dashboard</a></li>
-	  <li class='navitem-users'><a href='users.php'><i class='fa fa-users'></i> Users</a></li>";
-  }
+	  //Links for permission level 2 (default admin)
+	  if ($loggedInUser->checkPermission(array(2))){
+		  echo "
+		  <li class='navitem-dashboard-admin'><a href='dashboard_admin.php'><i class='fa fa-dashboard'></i> Admin Dashboard</a></li>
+		  <li class='navitem-users'><a href='users.php'><i class='fa fa-users'></i> Users</a></li>";
+	  }
   ?>
-	  <li class="navitem-dashboard"><a href="dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-	  <li class='navitem-settings'><a href="account_settings.php"><i class="fa fa-gear"></i> Account Settings</a></li>
+  <li class="navitem-dashboard"><a href="dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+  <li class='navitem-settings'><a href="account_settings.php"><i class="fa fa-gear"></i> Account Settings</a></li>
   
   <?php
 	  //Links for permission level 2 (default admin)
