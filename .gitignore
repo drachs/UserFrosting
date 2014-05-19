@@ -1,4 +1,3 @@
-
-*.komodoproject
-
 models/db-settings.php
+
+README.md
