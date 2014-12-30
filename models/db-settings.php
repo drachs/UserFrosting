@@ -31,8 +31,8 @@ THE SOFTWARE.
 
 //Database Information
 $db_host = "localhost"; //Host address (most likely localhost)
-$db_name = "userfrosting"; //Name of Database
-$db_user = "root"; //Name of database user
+$db_name = "practico_test"; //Name of Database
+$db_user = "practico_test"; //Name of database user
 $db_pass = "password"; //Password for database user
 $db_table_prefix = "uf_";
 
@@ -52,6 +52,7 @@ GLOBAL $successes;
 $errors = array();
 $successes = array();
 
+$dev_env = TRUE;
 //Direct to install directory, if it exists and if $dev_env is not set to True in config.php
 if(is_dir("install/") && $dev_env != TRUE)
 {
