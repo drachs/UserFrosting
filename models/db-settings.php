@@ -30,6 +30,7 @@ THE SOFTWARE.
 */
 
 //Database Information
+$db_type = "mysql"; // Database type: mysql or pgsql
 $db_host = "localhost"; //Host address (most likely localhost)
 $db_name = "userfrosting"; //Name of Database
 $db_user = "root"; //Name of database user
